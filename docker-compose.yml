@@ -1,0 +1,25 @@
+version: "3.3"
+
+services:
+  redis:
+    container_name: redis_cool_tasks
+    image: "redis:latest"
+  postgres:
+    container_name: postgres_cool_tasks
+    image: "postgres:latest"  
+    ports:
+     - "5432:5432"
+    volumes:
+     - ./db-dump.sql:/docker-entrypoint-initdb.d/db-dump.sql
+  cool_tasks:
+    container_name: cool_tasks
+    image: cool_tasks:latest
+    build: .
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      WAIT_HOSTS: postgres:5432
+      WAIT_AFTER_HOSTS: 5

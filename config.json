@@ -1,0 +1,19 @@
+{
+  "ListenURL": ":8080",
+  "APIVersion": "/v1",
+  "LogFilePath": "log_file.log",
+  "Database": {
+    "Type": ["PostgreSQL","Redis"],
+    "PostgreSQL": {
+      "Username": "postgres",
+      "Password": "admin",
+      "DatabaseName": "travelservice",
+      "Hostname": "postgres",
+      "Port": 5432
+    },
+    "Redis":{
+      "URL":"redis",
+      "Port":6379
+    }
+  }
+}
